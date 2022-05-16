@@ -1,48 +1,37 @@
 #include<stdio.h>
-void selection_sort(int *arr,int n)
+int binary_search(int *arr,int n,int se)
 {
-	int i,mini,temp;
-	for(i=0;i<n;i++)
+	int m=0,i=0,j;
+	j=n-1;
+	while(i<=j)
 	{
-		mini=min(arr,i,n);//find min value index
-		temp=arr[i];
-		arr[i]=arr[mini];
-		arr[mini]=temp;
+	m=(i+j)/2;
+	if(arr[m]==se)
+	{
+		return 1;
+	}
+	if(arr[m]>se)
+	{
+		j=m-1;	
+	}
+	if(arr[m]<se)
+	{
+		i=m+1;	
+	}
+	return -1;
 	}
 }
-int min(int *arr,int i,int n)
-{
-	int j,ind=i,mini=arr[i];
-	for(j=i;j<n;j++)
-	{
-	
-			if(mini>(arr[j]))
-			{
-				mini=arr[j];
-				ind=j;
-				
-			}
-		
-	}
-	return ind;
-}
-
 int main()
 {
-	int n,arr[100],i;
+	int arr[40],i,j,se,m,n;
 	scanf("%d",&n);
 	for(i=0;i<n;i++)
 	{
 		scanf("%d",&arr[i]);
 	}
-	selection_sort(arr,n);
-	for(i=0;i<n;i++)
-	{
-		printf("%d ",arr[i]);
-		
-	}
+	scanf("%d",&se);
+	if(binary_search(arr,n,se))
+	printf("found");
+	else
+	printf("not found");
 }
-/*
-4
-2 5 4 1
-1 2 4 5*/
